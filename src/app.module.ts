@@ -6,6 +6,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LessonModule } from './lesson/lesson.module';
 import { Lesson } from './lesson/lesson.entity';
+import { StudentModule } from './students/student.module';
+import { Student } from './students/student.entity';
 
 @Module({
   imports: [
@@ -14,7 +16,7 @@ import { Lesson } from './lesson/lesson.entity';
       url: 'mongodb://localhost/school',
       synchronize: true,
       useUnifiedTopology: true,
-      entities: [Lesson],
+      entities: [Lesson, Student],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: true,
@@ -22,6 +24,7 @@ import { Lesson } from './lesson/lesson.entity';
     }),
     TypeOrmModule,
     LessonModule,
+    StudentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
